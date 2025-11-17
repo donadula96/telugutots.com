@@ -2,22 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Telugu Tots – Little Stories. Big Roots.</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Telugu Tots</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@500;600&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     :root {
-      --linen: #F4E9DD;
-      --cream: #FDF6EE;
-      --cocoa: #4E3625;
-      --terracotta: #C9784E;
-      --golden: #E4B06A;
-      --sage: #7C8F66;
+      --bg: #f4e9dd;
+      --bg-soft: #fdf6ee;
+      --ink: #3f3024;
+      --ink-soft: #6e5944;
+      --accent: #c77b4e;
+      --accent-soft: #e4b06a;
+      --sage: #7f8e69;
+      --radius-card: 22px;
     }
 
     * {
@@ -28,8 +36,9 @@
 
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #fff7ee 0, var(--linen) 45%, #ebdfd0 100%);
-      color: var(--cocoa);
+      background:
+        radial-gradient(circle at top, #fff7ee 0, var(--bg) 40%, #ebdfd0 100%);
+      color: var(--ink);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -39,11 +48,12 @@
       display: block;
     }
 
-    /* Simple fade-up animation */
+    /* Fade / motion */
+
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(24px);
       }
       to {
         opacity: 1;
@@ -51,24 +61,38 @@
       }
     }
 
-    .fade-in {
-      opacity: 0;
-      animation: fadeUp 1s ease-out forwards;
+    @keyframes softFloat {
+      from {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+      to {
+        transform: translateY(0);
+      }
     }
 
-    .delay-1 { animation-delay: 0.3s; }
-    .delay-2 { animation-delay: 0.6s; }
-    .delay-3 { animation-delay: 0.9s; }
+    .fade-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 900ms ease-out, transform 900ms ease-out;
+    }
+
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* HERO */
 
     .hero {
+      min-height: 100vh;
       position: relative;
-      min-height: 90vh;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      padding: 40px 20px 80px;
+      padding: 40px 20px 90px;
       text-align: center;
       overflow: hidden;
     }
@@ -80,6 +104,8 @@
       background: url("images/hero-teaser.jpg") center/cover no-repeat;
       filter: saturate(1.05) contrast(1.05);
       transform: scale(1.03);
+      transform-origin: center;
+      animation: softFloat 16s ease-in-out infinite;
     }
 
     .hero::after {
@@ -87,68 +113,101 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to top, rgba(35, 25, 18, 0.82), rgba(35, 25, 18, 0.25), rgba(35, 25, 18, 0.1)),
-        radial-gradient(circle at top left, rgba(255, 238, 205, 0.32), transparent 50%);
+        linear-gradient(to top, rgba(34, 22, 16, 0.88), rgba(34, 22, 16, 0.35), rgba(34, 22, 16, 0.15)),
+        radial-gradient(circle at top left, rgba(255, 234, 204, 0.38), transparent 60%);
       mix-blend-mode: multiply;
     }
 
     .hero-inner {
       position: relative;
-      max-width: 720px;
-      z-index: 1;
+      max-width: 780px;
       color: #fdf6ee;
+      animation: fadeUp 1.1s ease-out forwards;
     }
 
-    .hero-tag {
+    .hero-pill {
       display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      background: rgba(19, 11, 7, 0.6);
       margin-bottom: 14px;
-      background: rgba(20, 13, 10, 0.55);
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      box-shadow: 0 0 0 6px rgba(228, 176, 106, 0.2);
     }
 
     .hero-title {
       font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: clamp(32px, 5vw, 42px);
-      letter-spacing: 0.06em;
+      font-size: clamp(32px, 5vw, 44px);
+      letter-spacing: 0.09em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .hero-sub {
-      font-size: 14px;
-      max-width: 520px;
+      font-size: 15px;
+      max-width: 540px;
       margin: 0 auto 10px;
-      color: #f6ebdd;
+      color: #f8ebdc;
+      line-height: 1.7;
     }
 
-    .hero-footnote {
+    .hero-tagline {
       font-size: 12px;
-      color: #dbcab7;
-      margin-top: 6px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      opacity: 0.86;
+      margin-top: 8px;
     }
 
-    /* MAIN SECTIONS */
+    .hero-scroll {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #f0e1d3;
+      opacity: 0.8;
+    }
+
+    .hero-scroll::after {
+      content: "";
+      display: block;
+      margin: 8px auto 0;
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+    }
+
+    /* MAIN */
 
     .wrapper {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 40px 20px 70px;
     }
 
-    .section {
-      margin-bottom: 64px;
-    }
-
     .section-card {
-      background: var(--cream);
-      border-radius: 18px;
+      background: var(--bg-soft);
+      border-radius: var(--radius-card);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.13);
+      margin-bottom: 56px;
       overflow: hidden;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr);
     }
 
     .section-image {
@@ -159,7 +218,7 @@
     .section-image img {
       width: 100%;
       transform: scale(1.02);
-      transition: transform 0.8s ease-out;
+      transition: transform 0.9s ease-out;
     }
 
     .section-card:hover .section-image img {
@@ -167,15 +226,15 @@
     }
 
     .section-body {
-      padding: 26px 22px 24px;
+      padding: 26px 24px 24px;
       text-align: left;
     }
 
     .section-label {
       font-size: 11px;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #9b7d60;
+      color: #9b7d5f;
       margin-bottom: 6px;
     }
 
@@ -183,139 +242,166 @@
       font-family: "Playfair Display", "Times New Roman", serif;
       font-size: 22px;
       margin-bottom: 8px;
+      color: var(--ink);
     }
 
     .section-text {
       font-size: 14px;
-      line-height: 1.7;
-      color: #6c5843;
+      line-height: 1.8;
+      color: var(--ink-soft);
+    }
+
+    .section-meta {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--sage);
+      margin-top: 16px;
     }
 
     /* FOOTER */
 
     footer {
-      padding: 26px 20px 34px;
+      padding: 26px 20px 40px;
       text-align: center;
       font-size: 12px;
       color: #937762;
     }
 
     footer span {
-      color: var(--terracotta);
-      font-weight: 500;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: inline-block;
+      margin-bottom: 4px;
+      font-size: 11px;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 768px) {
       .hero {
-        padding-bottom: 70px;
+        padding-bottom: 80px;
+        padding-top: 28px;
       }
-      .hero-title {
-        font-size: 30px;
+
+      .hero-inner {
+        padding: 0 6px;
       }
+
       .wrapper {
-        padding: 30px 16px 60px;
+        padding: 32px 16px 60px;
       }
+
+      .section-card {
+        margin-bottom: 40px;
+      }
+
       .section-body {
-        padding: 22px 18px 20px;
+        padding: 20px 18px 18px;
       }
     }
   </style>
 </head>
-
 <body>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-inner fade-in delay-1">
-      <div class="hero-tag">First look · Work in progress</div>
+    <div class="hero-inner">
+      <div class="hero-pill">
+        <span class="hero-pill-dot"></span>
+        quietly in progress
+      </div>
       <h1 class="hero-title">Telugu Tots</h1>
       <p class="hero-sub">
-        A quiet little project for families who want their children to grow up with
-        warm memories, gentle play, and a soft connection to where they come from.
+        A small, slow project exploring play, memory and home — for children who
+        are growing up between stories, languages, and skies.
       </p>
-      <p class="hero-footnote">
-        No launch countdowns. No noise. Just thoughtful steps, shared slowly.
+      <p class="hero-tagline">
+        little stories · big roots
       </p>
     </div>
+    <div class="hero-scroll">SCROLL</div>
   </section>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main class="wrapper">
 
-    <!-- Section 1 -->
-    <section class="section fade-in delay-1">
-      <div class="section-card">
-        <div class="section-image">
-          <img src="images/glimpse-1.jpg" alt="Warm Montessori wooden vehicles and books in golden light." />
-        </div>
-        <div class="section-body">
-          <div class="section-label">Everyday Calm</div>
-          <h2 class="section-title">Little hands, quiet stories.</h2>
-          <p class="section-text">
-            The project began on the floor — soft fabric, wooden toys, and the small rituals that
-            fill a home at the edges of the day. Telugu Tots grows from these ordinary, gentle
-            moments.
-          </p>
-        </div>
+    <!-- Glimpse 1 -->
+    <section class="section-card fade-section">
+      <div class="section-image">
+        <img src="images/glimpse-1.jpg" alt="Warm Montessori wooden vehicles and books in golden light." />
+      </div>
+      <div class="section-body">
+        <div class="section-label">Glimpse I</div>
+        <h2 class="section-title">Quiet corners, long afternoons.</h2>
+        <p class="section-text">
+          It started on the floor: linen on the ground, a few wooden pieces, the sound
+          of tiny wheels and pages turning. No hurry, no schedule — just the slow
+          rhythm of a child discovering the same objects again and again.
+        </p>
+        <div class="section-meta">Nothing to buy. Nothing to launch. Just notes.</div>
       </div>
     </section>
 
-    <!-- Section 2 -->
-    <section class="section fade-in delay-2">
-      <div class="section-card">
-        <div class="section-image">
-          <img src="images/glimpse-2.jpg" alt="Wooden map of India puzzle with children's hands reaching toward it." />
-        </div>
-        <div class="section-body">
-          <div class="section-label">Roots & Places</div>
-          <h2 class="section-title">Between here and home.</h2>
-          <p class="section-text">
-            For many little ones, stories stretch across oceans. We’re exploring ways for children
-            to feel at home in both worlds — curious about where they are, and gently rooted in
-            where they come from.
-          </p>
-        </div>
+    <!-- Glimpse 2 -->
+    <section class="section-card fade-section">
+      <div class="section-image">
+        <img src="images/glimpse-2.jpg" alt="Wooden map puzzle of India with children's hands reaching toward it." />
+      </div>
+      <div class="section-body">
+        <div class="section-label">Glimpse II</div>
+        <h2 class="section-title">Between here and somewhere familiar.</h2>
+        <p class="section-text">
+          Some little ones fall asleep to one language and wake up to another.
+          We’re sketching quiet ways for them to trace back where they come from,
+          without turning it into homework or a performance.
+        </p>
+        <div class="section-meta">play, place, and gentle belonging</div>
       </div>
     </section>
 
-    <!-- Section 3 -->
-    <section class="section fade-in delay-3">
-      <div class="section-card">
-        <div class="section-image">
-          <img src="images/glimpse-3.jpg" alt="Colorful wooden cars and tractors arranged for play." />
-        </div>
-        <div class="section-body">
-          <div class="section-label">Journeys & Play</div>
-          <h2 class="section-title">Small roads to somewhere.</h2>
-          <p class="section-text">
-            Wheels, pages, tiny adventures—nothing loud, nothing rushed. Just objects designed
-            to be held, loved, and remembered long after small hands have outgrown them.
-          </p>
-        </div>
+    <!-- Glimpse 3 -->
+    <section class="section-card fade-section">
+      <div class="section-image">
+        <img src="images/glimpse-3.jpg" alt="Colourful wooden vehicles on a play surface." />
+      </div>
+      <div class="section-body">
+        <div class="section-label">Glimpse III</div>
+        <h2 class="section-title">Small journeys, soft adventures.</h2>
+        <p class="section-text">
+          Wheels, windows, tiny drivers and unmarked roads. We’re less interested in
+          where these vehicles are going, and more in the conversations that happen
+          while a child quietly drives them there.
+        </p>
+        <div class="section-meta">more to come, slowly</div>
       </div>
     </section>
 
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    © <span>Telugu Tots</span> · Little Stories. Big Roots.
+    <span>Telugu Tots</span><br>
+    Little Stories. Big Roots.
   </footer>
 
   <script>
-    // Optional: add a tiny scroll-trigger to restart animation when sections come into view
+    // simple intersection observer for fade-in
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('play');
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.18 }
     );
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-section').forEach(sec => {
+      observer.observe(sec);
+    });
   </script>
-
 </body>
 </html>
