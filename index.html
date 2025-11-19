@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Telugu Tots — Quietly in Progress</title>
 
+  <!-- META DESCRIPTION -->
+  <meta name="description" content="Telugu Tots creates warm, Montessori-inspired wooden toys and stories rooted in Telugu childhoods — quiet corners of play for children growing up between languages, places, and skies.">
+
   <!-- FAVICONS -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -58,11 +61,21 @@
       z-index: 10000;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
     /* ---------------- HERO ---------------- */
 
     .hero {
       position: relative;
       height: 100vh;
+      min-height: 560px;
       overflow: hidden;
       color: #fff;
     }
@@ -107,7 +120,6 @@
     .hero-logo img {
       width: 150px;
       height: auto;
-      display: block;
     }
 
     @keyframes heroLogoFloat {
@@ -179,18 +191,37 @@
       color: #f2e4d6;
     }
 
+    .hero-scroll a {
+      text-decoration: none;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .scroll-line {
       width: 1px;
       height: 36px;
       background: #f2e4d6;
       opacity: 0.85;
-      margin: 10px auto 0;
+      margin-top: 10px;
+      transition: transform 0.25s ease;
+      transform-origin: top;
     }
 
-    /* ---------------- SECTIONS ---------------- */
+    .hero-scroll a:hover .scroll-line,
+    .hero-scroll a:focus-visible .scroll-line {
+      transform: scaleY(1.15);
+    }
+
+    /* ---------------- MAIN SECTIONS ---------------- */
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
 
     .section {
-      padding: 80px 16px 0px;  /* bottom padding removed to tighten space above logo */
+      padding: 80px 16px 0px;
     }
 
     .section-inner {
@@ -234,18 +265,23 @@
       border-radius: 32px;
       box-shadow: 0 18px 60px rgba(0,0,0,0.12);
       padding: 24px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
 
     .frame img {
-      width: 100%;
-      display: block;
       border-radius: 24px;
+    }
+
+    .frame:hover,
+    .frame:focus-within {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 70px rgba(0,0,0,0.14);
     }
 
     /* ---------------- NOTIFY ---------------- */
 
     .notify {
-      padding: 6px 16px 10px; /* slightly reduced top padding */
+      padding: 6px 16px 10px;
       text-align: center;
       color: #9a7d62;
     }
@@ -255,7 +291,6 @@
       margin: 0 auto;
     }
 
-    /* Logo above email section */
     .notify-logo {
       margin-bottom: 20px;
     }
@@ -263,7 +298,6 @@
     .notify-logo img {
       width: 130px;
       height: auto;
-      display: block;
       margin: 0 auto;
     }
 
@@ -296,6 +330,11 @@
       min-width: 230px;
       font-size: 13px;
       outline: none;
+      color: #3a3029;
+    }
+
+    .notify-input::placeholder {
+      color: rgba(107,90,77,0.7);
     }
 
     .notify-button {
@@ -310,10 +349,24 @@
       cursor: pointer;
     }
 
+    .notify-input:focus-visible,
+    .notify-button:focus-visible,
+    .footer-icon-link:focus-visible {
+      outline: 2px solid #b48663;
+      outline-offset: 3px;
+    }
+
     .notify-note {
       font-size: 12px;
       margin-top: 14px;
       opacity: 0.8;
+    }
+
+    .notify-error {
+      font-size: 12px;
+      margin-top: 8px;
+      color: #b54b3a;
+      display: none;
     }
 
     /* ---------------- FOOTER ICONS ---------------- */
@@ -375,10 +428,27 @@
       border: 0;
     }
 
+    /* Reduced motion: turn off float/pulse */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
     @media (max-width: 768px) {
       .hero-title { font-size: 40px; }
-      .section { padding: 60px 16px 8px; } /* tighter on mobile too */
+      .hero-subtitle { font-size: 17px; }
+      .section { padding: 60px 16px 8px; }
       .section-inner p.section-text:last-of-type { margin-bottom: 4px; }
+    }
+
+    @media (min-width: 1200px) {
+      .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+      }
     }
   </style>
 </head>
@@ -386,8 +456,10 @@
 <body>
 
   <!-- HERO -->
-  <section class="hero">
-    <img src="images/hero-teaser.jpg" class="hero-img" />
+  <header class="hero">
+    <img src="images/hero-teaser.jpg"
+         class="hero-img"
+         alt="Soft, warm tabletop scene with wooden toys, woven baskets, and a child's hands — the quiet world of Telugu Tots play." />
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
@@ -396,7 +468,7 @@
       <div class="hero-logo">
         <img 
           src="https://donadula96.github.io/site-teaser/images/telugu-tots-logo-red.png"
-          alt="Telugu Tots Logo"
+          alt="Telugu Tots logo"
         />
       </div>
 
@@ -412,114 +484,122 @@
     </div>
 
     <div class="hero-scroll">
-      SCROLL
-      <div class="scroll-line"></div>
+      <a href="#glimpse-1">
+        <span>SCROLL</span>
+        <div class="scroll-line"></div>
+      </a>
     </div>
-  </section>
+  </header>
 
+  <main>
 
-  <!-- GLIMPSE 01 -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="eyebrow">GLIMPSE 01</div>
-      <h2 class="section-title">Quiet corners of play</h2>
-      <p class="section-text">
-        Wooden cars, soft light, small hands arranging their own little stories — the kind of scene that might one day become a toy or a book.
-      </p>
-      <div class="frame">
-        <img src="images/glimpse-1.jpg" />
+    <!-- GLIMPSE 01 -->
+    <section class="section" id="glimpse-1">
+      <div class="section-inner">
+        <div class="eyebrow">GLIMPSE 01</div>
+        <h2 class="section-title">Quiet corners of play</h2>
+        <p class="section-text">
+          Wooden cars, soft light, small hands arranging their own little stories — the kind of scene that might one day become a toy or a book.
+        </p>
+        <figure class="frame">
+          <img src="images/glimpse-1.jpg"
+               alt="A group of small wooden cars in warm colors on a child's play mat, with tiny trees and hands reaching in to play." />
+        </figure>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GLIMPSE 02 -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="eyebrow">GLIMPSE 02</div>
-      <h2 class="section-title">Maps of memory</h2>
-      <p class="section-text">
-        A tiny India in wood and color — pieces that fit together like language, family, and places our children grow up hearing about.
-      </p>
-      <div class="frame">
-        <img src="images/glimpse-2.jpg" />
+    <!-- GLIMPSE 02 -->
+    <section class="section" id="glimpse-2">
+      <div class="section-inner">
+        <div class="eyebrow">GLIMPSE 02</div>
+        <h2 class="section-title">Maps of memory</h2>
+        <p class="section-text">
+          A tiny India in wood and color — pieces that fit together like language, family, and places our children grow up hearing about.
+        </p>
+        <figure class="frame">
+          <img src="images/glimpse-2.jpg"
+               alt="Wooden India-inspired puzzle and play pieces, arranged like a map on a tabletop." />
+        </figure>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GLIMPSE 03 -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="eyebrow">GLIMPSE 03</div>
-      <h2 class="section-title">Rainbow mornings</h2>
-      <p class="section-text">
-        Just light, linen, and a rainbow — simple shapes that might quietly grow into something children can hold and remember.
-      </p>
-      <div class="frame">
-        <img src="images/glimpse-3.jpg" />
+    <!-- GLIMPSE 03 -->
+    <section class="section" id="glimpse-3">
+      <div class="section-inner">
+        <div class="eyebrow">GLIMPSE 03</div>
+        <h2 class="section-title">Rainbow mornings</h2>
+        <p class="section-text">
+          Just light, linen, and a rainbow — simple shapes that might quietly grow into something children can hold and remember.
+        </p>
+        <figure class="frame">
+          <img src="images/glimpse-3.jpg"
+               alt="Wooden rainbow toy in earthy tones on soft linen fabric in morning light." />
+        </figure>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="eyebrow">ABOUT US</div>
+        <h2 class="section-title">Designed for Little Minds, Rooted in Big Culture</h2>
 
-  <!-- ABOUT -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="eyebrow">ABOUT US</div>
-      <h2 class="section-title">Designed for Little Minds, Rooted in Big Culture</h2>
+        <p class="section-text">
+          Telugu Tots creates thoughtful early-learning experiences shaped by 
+          research on how young children explore, imagine, and understand their world. 
+          We design with intention — choosing warm materials, calm aesthetics, and 
+          culturally meaningful themes that help children feel connected to where they come from.
+        </p>
 
-      <p class="section-text">
-        Telugu Tots creates thoughtful early-learning experiences shaped by 
-        research on how young children explore, imagine, and understand their world. 
-        We design with intention — choosing warm materials, calm aesthetics, and 
-        culturally meaningful themes that help children feel connected to where they come from.
-      </p>
+        <p class="section-text">
+          Our toys and stories support sensory exploration, fine-motor skills, open-ended play, 
+          and early language foundations. These learning moments are paired with familiar visuals 
+          from Telugu childhoods: village paths, wooden vehicles, festivals, animals, foods, 
+          and everyday rhythms.
+        </p>
 
-      <p class="section-text">
-        Our toys and stories support sensory exploration, fine-motor skills, open-ended play, 
-        and early language foundations. These learning moments are paired with familiar visuals 
-        from Telugu childhoods: village paths, wooden vehicles, festivals, animals, foods, 
-        and everyday rhythms.
-      </p>
-
-      <p class="section-text">
-        We believe that play is most powerful when it feels both universal and deeply rooted. 
-        Our materials are simple, tactile, and aesthetically quiet — giving children room to 
-        imagine while staying close to stories that feel like home.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- NOTIFY -->
-  <section class="notify">
-    <div class="notify-inner">
-
-      <!-- logo above the email section -->
-      <div class="notify-logo">
-        <img 
-          src="https://donadula96.github.io/site-teaser/images/telugu-tots-logo-red.png"
-          alt="Telugu Tots Logo"
-        />
+        <p class="section-text">
+          We believe that play is most powerful when it feels both universal and deeply rooted. 
+          Our materials are simple, tactile, and aesthetically quiet — giving children room to 
+          imagine while staying close to stories that feel like home.
+        </p>
       </div>
+    </section>
 
-      <div class="notify-title">A SMALL LIST FOR SMALL THINGS</div>
-      <div class="notify-text">
-        If you'd like to hear when our first tiny toys and stories are ready, leave your email below.
+    <!-- NOTIFY -->
+    <section class="notify" id="notify">
+      <div class="notify-inner">
+
+        <!-- logo above the email section -->
+        <div class="notify-logo">
+          <img 
+            src="https://donadula96.github.io/site-teaser/images/telugu-tots-logo-red.png"
+            alt="Telugu Tots logo"
+          />
+        </div>
+
+        <div class="notify-title">A SMALL LIST FOR SMALL THINGS</div>
+        <div class="notify-text">
+          If you'd like to hear when our first tiny toys and stories are ready, leave your email below.
+        </div>
+
+        <form class="notify-form" action="https://formspree.io/f/mnnlwwaj" method="POST" id="notifyForm">
+          <label class="sr-only" for="notify-email">Email address</label>
+          <input id="notify-email" type="email" name="email"
+                 class="notify-input" placeholder="your email address" required />
+          <button type="submit" class="notify-button">notify me</button>
+        </form>
+
+        <div id="notifySuccess" class="notify-note" style="display:none; opacity:0; transition:opacity 0.6s ease;">
+          Thank you — we’ll write to you when something beautiful is ready 🌿
+        </div>
+        <div id="notifyError" class="notify-error">
+          Something went wrong. Please try again in a moment.
+        </div>
       </div>
+    </section>
 
-      <form class="notify-form" action="https://formspree.io/f/mnnlwwaj" method="POST" id="notifyForm">
-        <label class="sr-only" for="notify-email">Email address</label>
-        <input id="notify-email" type="email" name="email"
-               class="notify-input" placeholder="your email address" required />
-        <button type="submit" class="notify-button">notify me</button>
-      </form>
-
-      <div id="notifySuccess" class="notify-note" style="display:none; opacity:0; transition:opacity 0.6s ease;">
-        Thank you — we’ll write to you when something beautiful is ready 🌿
-      </div>
-    </div>
-  </section>
-
+  </main>
 
   <!-- FOOTER ICONS -->
   <footer class="footer-icons">
@@ -529,17 +609,17 @@
 
       <!-- Email -->
       <a class="footer-icon-link" href="mailto:team.telugutots@gmail.com" title="Email">
-        <span class="sr-only">team.telugutots@gmail.com</span>
-        <svg viewBox="0 0 24 24" fill="none">
+        <span class="sr-only">Email Telugu Tots at team.telugutots@gmail.com</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <rect x="3" y="5" width="18" height="14" rx="2" stroke="#b48663" stroke-width="1.2"/>
           <path d="M5 7l7 6 7-6" stroke="#b48663" stroke-width="1.2"/>
         </svg>
       </a>
 
       <!-- Instagram -->
-      <a class="footer-icon-link" href="https://instagram.com/telugutots" target="_blank" title="Instagram">
-        <span class="sr-only">@telugutots</span>
-        <svg viewBox="0 0 24 24" fill="none">
+      <a class="footer-icon-link" href="https://instagram.com/telugutots" target="_blank" rel="noreferrer" title="Instagram">
+        <span class="sr-only">Visit @telugutots on Instagram</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <rect x="6" y="6" width="12" height="12" rx="3.5" stroke="#b48663" stroke-width="1.1"/>
           <circle cx="12" cy="12" r="3" stroke="#b48663" stroke-width="1.1"/>
           <circle cx="15.4" cy="8.8" r="0.8" fill="#b48663"/>
@@ -547,9 +627,9 @@
       </a>
 
       <!-- Facebook -->
-      <a class="footer-icon-link" href="https://facebook.com/telugutots" target="_blank" title="Facebook">
-        <span class="sr-only">facebook.com/telugutots</span>
-        <svg viewBox="0 0 24 24" fill="none">
+      <a class="footer-icon-link" href="https://facebook.com/telugutots" target="_blank" rel="noreferrer" title="Facebook">
+        <span class="sr-only">Visit Telugu Tots on Facebook</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M13.2 8H14.9V6.1H13.3C11.4 6.1 10.7 7.5 10.7 9.1V11H8.9v2.1h1.8v4.8h2.2v-4.8H15l.3-2.1h-2.4V9.1c0-.7.3-1.1.8-1.1Z"
                 fill="#b48663"/>
         </svg>
@@ -558,27 +638,36 @@
     </div>
   </footer>
 
-
   <!-- Notify Script -->
   <script>
     const form = document.getElementById('notifyForm');
     const success = document.getElementById('notifySuccess');
+    const errorMsg = document.getElementById('notifyError');
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      errorMsg.style.display = "none";
+
       const data = new FormData(form);
       const action = form.getAttribute('action');
 
-      const res = await fetch(action, {
-        method: "POST",
-        body: data,
-        headers: { "Accept": "application/json" }
-      });
+      try {
+        const res = await fetch(action, {
+          method: "POST",
+          body: data,
+          headers: { "Accept": "application/json" }
+        });
 
-      if (res.ok) {
-        form.reset();
-        success.style.display = "block";
-        setTimeout(() => { success.style.opacity = 1; }, 50);
+        if (res.ok) {
+          form.reset();
+          success.style.display = "block";
+          success.style.opacity = 0;
+          setTimeout(() => { success.style.opacity = 1; }, 50);
+        } else {
+          errorMsg.style.display = "block";
+        }
+      } catch (err) {
+        errorMsg.style.display = "block";
       }
     });
   </script>
