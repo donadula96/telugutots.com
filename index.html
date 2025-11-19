@@ -58,6 +58,20 @@
       z-index: 10000;
     }
 
+    .hero-watermark {
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.12;          /* very soft watermark */
+      z-index: 3;
+    }
+    
+    .hero-watermark img {
+      width: 120px;           /* small and elegant */
+      height: auto;
+    }
+    
     /* HERO */
     .hero {
       position: relative;
@@ -352,6 +366,12 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
+      <div class="hero-watermark">
+        <img 
+          src="https://donadula96.github.io/site-teaser/images/telugu-tots-logo-red.png" 
+          alt="Telugu Tots Logo"
+        />
+      </div>
       <div class="hero-badge">QUIETLY IN PROGRESS</div>
       <h1 class="hero-title">TELUGU TOTS</h1>
       <p class="hero-subtitle">
