@@ -190,7 +190,7 @@
     /* ---------------- SECTIONS ---------------- */
 
     .section {
-      padding: 80px 16px 12px;   /* was 32px bottom */
+      padding: 80px 16px 0px;  /* bottom padding removed to tighten space above logo */
     }
 
     .section-inner {
@@ -224,6 +224,11 @@
       color: #6b5a4d;
     }
 
+    /* last ABOUT paragraph – reduce gap before logo */
+    .section-inner p.section-text:last-of-type {
+      margin-bottom: 6px;
+    }
+
     .frame {
       background: #ffffff;
       border-radius: 32px;
@@ -240,7 +245,7 @@
     /* ---------------- NOTIFY ---------------- */
 
     .notify {
-      padding: 8px 16px 10px; /* reduced top padding to close the gap */
+      padding: 6px 16px 10px; /* slightly reduced top padding */
       text-align: center;
       color: #9a7d62;
     }
@@ -372,7 +377,8 @@
 
     @media (max-width: 768px) {
       .hero-title { font-size: 40px; }
-      .section { padding: 60px 16px 24px; }
+      .section { padding: 60px 16px 8px; } /* tighter on mobile too */
+      .section-inner p.section-text:last-of-type { margin-bottom: 4px; }
     }
   </style>
 </head>
