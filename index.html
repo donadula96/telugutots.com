@@ -98,6 +98,32 @@
       padding: 0 24px;
     }
 
+    /* HERO LOGO – slow entrance */
+    .hero-logo {
+      margin-bottom: 18px;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: heroLogoFade 1.8s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+
+    .hero-logo img {
+      width: 150px;
+      height: auto;
+      display: block;
+    }
+
+    @keyframes heroLogoFade {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .hero-badge {
       padding: 7px 28px;
       border-radius: 999px;
@@ -227,6 +253,18 @@
       margin: 0 auto;
     }
 
+    /* Logo above email section */
+    .notify-logo {
+      margin-bottom: 20px;
+    }
+
+    .notify-logo img {
+      width: 130px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
     .notify-title {
       font-size: 13px;
       letter-spacing: 0.20em;
@@ -322,7 +360,7 @@
       opacity: 0.82;
     }
 
-    /* Visually hidden, for screen readers only */
+    /* Screen-reader-only text */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -350,6 +388,15 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
+
+      <!-- animated hero logo -->
+      <div class="hero-logo">
+        <img 
+          src="https://donadula96.github.io/site-teaser/images/telugu-tots-logo-red.png"
+          alt="Telugu Tots Logo"
+        />
+      </div>
+
       <div class="hero-badge">QUIETLY IN PROGRESS</div>
 
       <h1 class="hero-title">TELUGU TOTS</h1>
@@ -443,7 +490,16 @@
   <!-- NOTIFY -->
   <section class="notify">
     <div class="notify-inner">
-      <div class="notify-title">A small list for small things</div>
+
+      <!-- logo above the email section -->
+      <div class="notify-logo">
+        <img 
+          src="https://donadula96.github.io/site-teaser/images/telugu-tots-logo-red.png"
+          alt="Telugu Tots Logo"
+        />
+      </div>
+
+      <div class="notify-title">A SMALL LIST FOR SMALL THINGS</div>
       <div class="notify-text">
         If you'd like to hear when our first tiny toys and stories are ready, leave your email below.
       </div>
@@ -460,16 +516,6 @@
       </div>
     </div>
   </section>
-
-
-  <!-- FOOTER LOGO -->
-  <div style="text-align:center; margin-top: 20px; margin-bottom: 12px;">
-    <img 
-      src="https://donadula96.github.io/site-teaser/images/telugu-tots-logo-red.png"
-      alt="Telugu Tots Logo"
-      style="width:140px; height:auto; opacity:0.96;"
-    />
-  </div>
 
 
   <!-- FOOTER ICONS -->
